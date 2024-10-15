@@ -1,0 +1,1 @@
+this is true, and expected behaviour. Git will not create a master branch until you commit something.
