@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Use credentials to clone the repository
+                git credentialsId: 'token-for-jenkins' , url: 'https://github.com/VarshAnand/jenkins_repo.git'
+            }
+        }
+
+        stage('Compile Java') {
+            steps {
+                script {
+                    dir('jenkins1') {
+                    bat 'javac User.java'  // Use 'bat' instead of 'sh' for Windows
+                    }
+                }
+            }
+        }
+
+        stage('Run Java Program') {
+            steps {
+                script {
+                    dir('jenkins1') {
+                    bat 'java User'  // Use 'bat' instead of 'sh' for Windows
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/User.class', allowEmptyArchive: true
+        }
+    }
+}
