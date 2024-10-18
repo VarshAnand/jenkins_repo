@@ -30,9 +30,5 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: '**/User.class', allowEmptyArchive: true
-        }
-    }
+  
 }
