@@ -1,6 +1,6 @@
 class User {
 
-  public static void main(String[] args) {
+  public static void master(String[] args) {
     
     int first = 10;
     int second = 20;
